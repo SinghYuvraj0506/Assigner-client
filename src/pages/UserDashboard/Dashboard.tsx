@@ -1,5 +1,5 @@
 import EmptyContainer from "@/components/EmptyContainer";
-import DashboardWrapper from "@/lib/DashboardWrapper";
+import DashboardWrapper from "@/lib/HOC/DashboardWrapper";
 
 const Dashboard = () => {
   return (

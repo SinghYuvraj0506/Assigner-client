@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import DashboardWrapper from "@/lib/DashboardWrapper";
+import DashboardWrapper from "@/lib/HOC/DashboardWrapper";
 import { createAssigmentSchema } from "@/schemas/Assignment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";

@@ -1,4 +1,4 @@
-import DashboardWrapper from '@/lib/DashboardWrapper'
+import DashboardWrapper from '@/lib/HOC/DashboardWrapper'
 import React from 'react'
 
 const Profile = () => {
