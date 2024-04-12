@@ -24,12 +24,14 @@ export const apiSlice = createApi({
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled
+                    localStorage.setItem("isAuthenticated","true")
                     dispatch(userLoggedIn({
                         accessToken:result?.data?.data?.accessToken,
                         user:result?.data?.data?.user
                     }))
                     
                 } catch (error) {
+                    localStorage.removeItem("isAuthenticated")
                     console.log(error)
                 }
             }

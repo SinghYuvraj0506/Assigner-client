@@ -7,6 +7,7 @@ import UserRoutes from "./Routes/UsersRoutes";
 import AuthModelController from "./components/Auth/Index";
 import { Toaster } from "react-hot-toast";
 import Check from "./pages/UserDashboard/Check";
+import ProtectedRoute from "./lib/ProtectedRoute";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
-        <Route path="/user/*" element={<UserRoutes />} />
+        <Route path="/user/*" element={<ProtectedRoute><UserRoutes /></ProtectedRoute>} />
       </Routes>
 
       <Toaster position="top-center" reverseOrder={false} />

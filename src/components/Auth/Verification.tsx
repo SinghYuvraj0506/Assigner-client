@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -26,24 +26,28 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useValidateUserMutation } from "@/app/features/auth/authApi";
-import { useSelector } from "react-redux";
-import { AuthState } from "@/app/features/auth/authSlice";
-import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import useApiFeedback from "@/lib/hooks/useApiFeedback";
+import { useNavigate } from "react-router-dom";
+import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import useAuth from "@/lib/hooks/useAuth";
 
 const Verification = () => {
-  const [validateUser,{isSuccess,error}] = useValidateUserMutation();
-  const authState:AuthState = useSelector(state => state.auth)
+  const [validateUser,{isSuccess,error,data,isLoading}] = useValidateUserMutation();
+  const {token} = useAuth()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success(data?.message || "Registration Successfull");
-    }
-
-    if (error) {
-      toast.error(error?.data?.message || "Something went wrong");
-    }
-  }, [error,isSuccess]);
-
+  useApiFeedback(
+    isSuccess,
+    isLoading,
+    error,
+    data?.message || "Registration Successfull",
+    undefined,
+    error?.data?.message || "Something went wrong",
+    () => {navigate("/user");
+    dispatch(ChangeAuthModalStatus({ value: false }))}
+  );
 
   const form = useForm({
     resolver: zodResolver(VerificationUserSchema),
@@ -54,7 +58,7 @@ const Verification = () => {
 
   async function onSubmit(values: z.infer<typeof VerificationUserSchema>) {
     await validateUser({
-        token:authState?.token,
+        token:token,
         code:values?.code
     })
 

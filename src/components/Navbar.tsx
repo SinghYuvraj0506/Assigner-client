@@ -12,12 +12,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import useAuth from '@/lib/hooks/useAuth'
+import { useLogoutUserMutation } from '@/app/features/auth/authApi'
 
 interface NavbarProps{
   sidebarMobileOptions:sidebarOptionType[]
 }
 
 const Navbar:React.FC<NavbarProps> = ({sidebarMobileOptions}) => {
+  const {user} = useAuth()
+
+  const [logoutUser] = useLogoutUserMutation()
+
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <Sheet>
@@ -55,13 +61,13 @@ const Navbar:React.FC<NavbarProps> = ({sidebarMobileOptions}) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Yuvraj Singh</DropdownMenuLabel>
+              <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Pricing</DropdownMenuItem>
               <DropdownMenuItem>Join Us!!</DropdownMenuItem>
               <DropdownMenuItem>About Us</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>{logoutUser()}}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </header>

@@ -21,12 +21,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useRegisterUserMutation } from "@/app/features/auth/authApi";
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+import useApiFeedback from "@/lib/hooks/useApiFeedback";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const [registerUser, { isSuccess, error, data }] =
+  const [registerUser, { isSuccess, error, data,isLoading }] =
     useRegisterUserMutation();
 
   const form = useForm({
@@ -38,16 +37,15 @@ const Signup = () => {
     },
   });
 
-  useEffect(() => {
-    if (isSuccess) {
-      toast.success(data?.message || "Verify your email address");
-      dispatch(ChangeAuthModalStatus({ value: true, type: "Verification" }));
-    }
-
-    if (error) {
-      toast.error(error?.data?.message || "Something went wrong");
-    }
-  }, [error,isSuccess]);
+  useApiFeedback(
+    isSuccess,
+    isLoading,
+    error,
+    data?.message || "Verify your email address",
+    undefined,
+    error?.data?.message || "Something went wrong",
+    () => dispatch(ChangeAuthModalStatus({ value: true, type: "Verification" }))
+  );
 
   async function onSubmit(values: z.infer<typeof SignupUserSchema>) {
     await registerUser(values);

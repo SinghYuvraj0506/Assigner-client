@@ -1,37 +1,34 @@
 import { useSocialAuthUserMutation } from "@/app/features/auth/authApi";
 import Loader from "@/components/Loader";
+import useApiFeedback from "@/lib/hooks/useApiFeedback";
 import { useEffect } from "react";
-import toast from "react-hot-toast";
 
 const Check = () => {
-  const [socialAuthUser, { error, isSuccess, data }] =
+  const [socialAuthUser, { error, isSuccess, data,isLoading }] =
     useSocialAuthUserMutation();
 
   useEffect(() => {
     checkGoogleLogin().then((response) => {
       if (response?.statusCode === 200) {
         const { email, name, signInFrom } = response?.data;
-        socialAuthUser({ email, fullName: name, signInFrom }).then(() => {
-          console.log("Social AUth done....");
-        });
+        socialAuthUser({ email, fullName: name, signInFrom }).then(() => {});
       } else {
         window.open("/", "_self");
       }
     });
   }, []);
 
-  useEffect(() => {
-    if (data?.success) {
-      toast.success(data?.message || "Logged In Successfully");
-      setTimeout(() => {
-        window.open("/", "_self");
-      }, 1500);
-    }
-
-    if (error) {
-      toast.error(error?.data?.message || "Something went wrong");
-    }
-  }, [error, isSuccess, data]);
+  useApiFeedback(
+    isSuccess,
+    isLoading,
+    error,
+    data?.message || "Logged In Successfully",
+    undefined,
+    error?.data?.message || "Something went wrong",
+    () => {setTimeout(() => {
+      window.open("/user", "_self");
+    }, 500)}
+  );
 
   const checkGoogleLogin = async () => {
     try {

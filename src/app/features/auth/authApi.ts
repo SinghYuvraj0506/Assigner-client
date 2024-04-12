@@ -33,6 +33,7 @@ const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled;
+                    localStorage.setItem("isAuthenticated","true")
                     dispatch(userLoggedIn({
                        accessToken:result?.data?.data?.accessToken,
                         user:result?.data?.data?.user
@@ -54,6 +55,7 @@ const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled;
+                    localStorage.setItem("isAuthenticated","true")
                     dispatch(userLoggedIn({
                        accessToken:result?.data?.data?.accessToken,
                        user:result?.data?.data?.user
@@ -75,6 +77,7 @@ const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled;
+                    localStorage.setItem("isAuthenticated","true")
                     dispatch(userLoggedIn({
                        accessToken:result?.data?.data?.accessToken,
                         user:result?.data?.data?.user
@@ -93,6 +96,7 @@ const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg,{queryFulfilled,dispatch}){
                 try {
                     await queryFulfilled;
+                    localStorage.removeItem("isAuthenticated")
                     dispatch(userLoggedOut())
                 } catch (error) {
                     console.log(error)
