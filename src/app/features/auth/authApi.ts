@@ -1,5 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
-import { userRegistration } from "./authSlice";
+import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
 const authApi = apiSlice.injectEndpoints({
     endpoints:(builder)=>({
@@ -14,8 +14,86 @@ const authApi = apiSlice.injectEndpoints({
                 try {
                     const result = await queryFulfilled;
                     dispatch(userRegistration({
-                        user:result.data.data
+                       token:result?.data?.data?.token
                     }))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }),
+        validateUser : builder.mutation({
+            query: ({token,code}) => ({
+                url:"users/validateAccount",
+                method:"POST",
+                body:{
+                    token,code
+                },
+                credentials:"include"
+            }),
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(userLoggedIn({
+                       accessToken:result?.data?.data?.accessToken,
+                        user:result?.data?.data?.user
+                    }))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }),
+        socialAuthUser : builder.mutation({
+            query: ({email,fullName,signInFrom}) => ({
+                url:"users/socialAuthRegister",
+                method:"POST",
+                body:{
+                    email,fullName,signInFrom
+                },
+                credentials:"include"
+            }),
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(userLoggedIn({
+                       accessToken:result?.data?.data?.accessToken,
+                       user:result?.data?.data?.user
+                    }))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }),
+        loginUser : builder.mutation({
+            query: ({email,password,signInFrom}) => ({
+                url:"users/login",
+                method:"POST",
+                body:{
+                    email,password,signInFrom
+                },
+                credentials:"include"
+            }),
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try {
+                    const result = await queryFulfilled;
+                    dispatch(userLoggedIn({
+                       accessToken:result?.data?.data?.accessToken,
+                        user:result?.data?.data?.user
+                    }))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }),
+        logoutUser : builder.mutation({
+            query: (data) => ({
+                url:"users/logout",
+                method:"POST",
+                credentials:"include"
+            }),
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try {
+                    await queryFulfilled;
+                    dispatch(userLoggedOut())
                 } catch (error) {
                     console.log(error)
                 }
@@ -26,4 +104,4 @@ const authApi = apiSlice.injectEndpoints({
 
 
 
-export const {useRegisterUserMutation} = authApi;
+export const {useRegisterUserMutation,useValidateUserMutation,useLoginUserMutation,useLogoutUserMutation,useSocialAuthUserMutation} = authApi;

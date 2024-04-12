@@ -1,19 +1,23 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import Signup from "./Signup";
 import Verification from "./Verification";
 import Login from "./Login";
 import DialogWrapper from "@/lib/HOC/DialogWrapper";
-import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import {
+  ChangeAuthModalStatus,
+  GeneralStateInterface,
+} from "@/app/features/general/GeneralSlice";
 
 const Index = () => {
-  const generalState = useSelector((state) => state.general);
+  const generalState: GeneralStateInterface = useSelector(
+    (state) => state.general
+  );
 
   return (
     <div>
-      {generalState?.ModalType === "SignUp" ? (
+      {generalState.modalType === "SignUp" ? (
         <Signup />
-      ) : generalState?.ModalType === "Verification" ? (
+      ) : generalState.modalType === "Verification" ? (
         <Verification />
       ) : (
         <Login />
@@ -23,13 +27,19 @@ const Index = () => {
 };
 
 const AuthModelController = () => {
-    const generalState = useSelector((state) => state.general);
-    const dispatch = useDispatch();
-    const EnhancedComponent = DialogWrapper(Index, generalState?.openAuthModal, () => {
+  const generalState: GeneralStateInterface = useSelector(
+    (state) => state.general
+  );
+  const dispatch = useDispatch();
+  const EnhancedComponent = DialogWrapper(
+    Index,
+    generalState.openAuthModal,
+    () => {
       dispatch(ChangeAuthModalStatus({ value: false }));
-    });
+    }
+  );
 
-    return <EnhancedComponent />;
-}
+  return <EnhancedComponent />;
+};
 
 export default AuthModelController;

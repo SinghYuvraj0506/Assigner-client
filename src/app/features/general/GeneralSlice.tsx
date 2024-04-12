@@ -1,17 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-const initialState = {
+export interface GeneralStateInterface {
+    openAuthModal: boolean;
+    modalType: "SignUp" | "Login" | "Verification" | undefined;
+}
+
+const initialState:GeneralStateInterface = {
     openAuthModal:false,
-    ModalType:"",
+    modalType:"Login",
 }
 
 export const generalSlice = createSlice({
     name:"general",
     initialState,
     reducers:{
-        ChangeAuthModalStatus:(state,action) => {
+        ChangeAuthModalStatus:(state, action: PayloadAction<{ value: boolean, type?: "SignUp" | "Login" | "Verification" }>) => {
             state.openAuthModal = action.payload.value,
-            state.ModalType = action.payload.type
+            state.modalType = action.payload.type
         }
     }
 })
