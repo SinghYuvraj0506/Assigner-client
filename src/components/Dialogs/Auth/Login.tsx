@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import { ChangeModalStatus } from "@/app/features/general/GeneralSlice";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginUserSchema } from "@/schemas/Auth";
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
     data?.message || "Logged In Successfully",
     undefined,
     error?.data?.message || "Something went wrong",
-    () => {dispatch(ChangeAuthModalStatus({ value: false }));navigate("/user")}
+    () => {dispatch(ChangeModalStatus({ value: false }));navigate("/user")}
   );
 
   const form = useForm({
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
           <span
             className="underline cursor-pointer"
             onClick={() => {
-              dispatch(ChangeAuthModalStatus({ value: true, type: "SignUp" }));
+              dispatch(ChangeModalStatus({ value: true, type: "SignUp" }));
             }}
           >
             Sign Up

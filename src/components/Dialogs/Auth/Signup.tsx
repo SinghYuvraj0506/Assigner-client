@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useDispatch } from "react-redux";
-import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import { ChangeModalStatus } from "@/app/features/general/GeneralSlice";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupUserSchema } from "@/schemas/Auth";
@@ -44,7 +44,7 @@ const Signup = () => {
     data?.message || "Verify your email address",
     undefined,
     error?.data?.message || "Something went wrong",
-    () => dispatch(ChangeAuthModalStatus({ value: true, type: "Verification" }))
+    () => dispatch(ChangeModalStatus({ value: true, type: "Verification" }))
   );
 
   async function onSubmit(values: z.infer<typeof SignupUserSchema>) {
@@ -123,7 +123,7 @@ const Signup = () => {
           <span
             className="underline cursor-pointer"
             onClick={() => {
-              dispatch(ChangeAuthModalStatus({ value: true, type: "Login" }));
+              dispatch(ChangeModalStatus({ value: true, type: "Login" }));
             }}
           >
             Sign in

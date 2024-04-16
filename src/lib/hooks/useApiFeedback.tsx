@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 
 const useApiFeedback = (
-  isSuccess: boolean,
+  isSuccess?: boolean,
   isLoading: boolean,
   error: any,
   successMessage: string,

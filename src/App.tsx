@@ -4,7 +4,7 @@ import Main from "./pages/Main";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import UserRoutes from "./Routes/UsersRoutes";
-import AuthModelController from "./components/Auth/Index";
+import ModelController from "./components/Dialogs/Index";
 import { Toaster } from "react-hot-toast";
 import Check from "./pages/UserDashboard/Check";
 import ProtectedRoute from "./lib/ProtectedRoute";
@@ -12,7 +12,7 @@ import ProtectedRoute from "./lib/ProtectedRoute";
 function App() {
   return (
     <div>
-      <AuthModelController />
+      <ModelController />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login/check" element={<Check />} />

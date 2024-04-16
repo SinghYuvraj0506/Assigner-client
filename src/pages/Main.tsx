@@ -1,5 +1,5 @@
 import { useLogoutUserMutation } from "@/app/features/auth/authApi";
-import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import { ChangeModalStatus } from "@/app/features/general/GeneralSlice";
 import useAuth from "@/lib/hooks/useAuth";
 import React from "react";
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ const Main: React.FC = () => {
         <button onClick={async () => await logoutUser()}>Logout</button>
       ) : (
         <button
-          onClick={() => dispatch(ChangeAuthModalStatus({ value: true }))}
+          onClick={() => dispatch(ChangeModalStatus({ value: true }))}
         >
           Login
         </button>

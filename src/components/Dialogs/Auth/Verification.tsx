@@ -29,7 +29,7 @@ import { useValidateUserMutation } from "@/app/features/auth/authApi";
 import { useDispatch } from "react-redux";
 import useApiFeedback from "@/lib/hooks/useApiFeedback";
 import { useNavigate } from "react-router-dom";
-import { ChangeAuthModalStatus } from "@/app/features/general/GeneralSlice";
+import { ChangeModalStatus } from "@/app/features/general/GeneralSlice";
 import useAuth from "@/lib/hooks/useAuth";
 
 const Verification = () => {
@@ -46,7 +46,7 @@ const Verification = () => {
     undefined,
     error?.data?.message || "Something went wrong",
     () => {navigate("/user");
-    dispatch(ChangeAuthModalStatus({ value: false }))}
+    dispatch(ChangeModalStatus({ value: false }))}
   );
 
   const form = useForm({

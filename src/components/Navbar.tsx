@@ -65,7 +65,7 @@ const Navbar:React.FC<NavbarProps> = ({sidebarMobileOptions}) => {
               <DropdownMenuSeparator />
               <DropdownMenuItem>Pricing</DropdownMenuItem>
               <DropdownMenuItem>Join Us!!</DropdownMenuItem>
-              <DropdownMenuItem>About Us</DropdownMenuItem>
+              <DropdownMenuItem>Feedback</DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={()=>{logoutUser()}}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
