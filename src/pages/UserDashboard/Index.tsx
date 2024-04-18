@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import { NavbarUserDashboard } from "@/components/Navbar";
 import {SidebarDesktop, sidebarOptionType} from "@/components/Sidebar";
 import React from "react";
 import {
@@ -38,7 +38,7 @@ const Index: React.FC<IndexProps> = ({ children }) => {
       <SidebarDesktop optionsArray={SidebarDesktopOptions}/>
 
       <div className="flex flex-col">
-        <Navbar sidebarMobileOptions={SidebarDesktopOptions}/>
+        <NavbarUserDashboard sidebarMobileOptions={SidebarDesktopOptions}/>
 
         {children}
       </div>

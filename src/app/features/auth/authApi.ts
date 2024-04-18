@@ -3,7 +3,7 @@ import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
 const authApi = apiSlice.injectEndpoints({
     endpoints:(builder)=>({
-        registerUser : builder.mutation({
+        registerUser : builder.mutation<ApiResponseType,{}>({
             query: (data) => ({
                 url:"users/register",
                 method:"POST",
@@ -21,7 +21,7 @@ const authApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        validateUser : builder.mutation({
+        validateUser : builder.mutation<ApiResponseType,{}>({
             query: ({token,code}) => ({
                 url:"users/validateAccount",
                 method:"POST",
@@ -43,7 +43,7 @@ const authApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        socialAuthUser : builder.mutation({
+        socialAuthUser : builder.mutation<ApiResponseType,{}>({
             query: ({email,fullName,signInFrom}) => ({
                 url:"users/socialAuthRegister",
                 method:"POST",
@@ -65,7 +65,7 @@ const authApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        loginUser : builder.mutation({
+        loginUser : builder.mutation<ApiResponseType,{}>({
             query: ({email,password,signInFrom}) => ({
                 url:"users/login",
                 method:"POST",
@@ -87,7 +87,7 @@ const authApi = apiSlice.injectEndpoints({
                 }
             }
         }),
-        logoutUser : builder.mutation({
+        logoutUser : builder.mutation<ApiResponseType,{}>({
             query: (data) => ({
                 url:"users/logout",
                 method:"POST",

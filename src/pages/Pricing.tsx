@@ -1,7 +1,7 @@
 import { NavbarMain } from '@/components/Navbar'
 import React from 'react'
 
-const Contact:React.FC = () => {
+const Pricing = () => {
   return (
     <div>
       <NavbarMain/>
@@ -9,4 +9,4 @@ const Contact:React.FC = () => {
   )
 }
 
-export default Contact
+export default Pricing

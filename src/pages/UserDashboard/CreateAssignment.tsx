@@ -76,7 +76,7 @@ const CreateAssignment = () => {
 
 
   async function onSubmit(values: z.infer<typeof createAssigmentSchema>) {
-    let fileArray = null;
+    let fileArray = [];
     if (!uploadedFileArray) {
       const formData = new FormData();
       formData.append("usage", "assignments");
@@ -97,9 +97,10 @@ const CreateAssignment = () => {
       completionTime: values?.completionTime,
       amount: values?.amount,
       delivery: values?.delivery,
-      fileIdArray: uploadedFileArray ?? fileArray,
+      fileIdArray: uploadedFileArray ?? data?.data ?? fileArray ,
     });
   }
+
 
   return (
     <Form {...form}>

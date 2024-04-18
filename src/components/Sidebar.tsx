@@ -27,7 +27,7 @@ export const SidebarDesktop: React.FC<SidebarProps> = ({ optionsArray }) => {
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <span>Assigner Inc.</span>
+            <span className="text-primary-green font-bold">Assigner</span>
           </Link>
 
           <Button variant="outline" size="icon" className="ml-auto h-8 w-8">
@@ -80,7 +80,7 @@ export const SidebarMobile: React.FC<SidebarProps> = ({ optionsArray }) => {
           to="/"
           className="flex items-center gap-2 text-lg font-semibold"
         >
-          <span className="">Assigner Inc.</span>
+          <span className="">Assigner</span>
         </Link>
 
         {optionsArray?.map((option,i) => {

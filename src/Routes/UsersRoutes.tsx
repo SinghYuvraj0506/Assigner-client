@@ -10,7 +10,7 @@ const UserRoutes = () => {
     <Index>
       <Routes>
         <Route path="*" element={<Dashboard/>} />
-        <Route path="/asssignments" element={<Assignments/>} />
+        <Route path="/assignments" element={<Assignments/>} />
         <Route path="/create-assignment" element={<CreateAssignment/>} />
         <Route path="/profile" element={<Profile/>} />
       </Routes>

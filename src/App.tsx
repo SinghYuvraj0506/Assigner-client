@@ -8,6 +8,7 @@ import ModelController from "./components/Dialogs/Index";
 import { Toaster } from "react-hot-toast";
 import Check from "./pages/UserDashboard/Check";
 import ProtectedRoute from "./lib/ProtectedRoute";
+import Pricing from "./pages/Pricing";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login/check" element={<Check />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
 
         <Route path="/user/*" element={<ProtectedRoute><UserRoutes /></ProtectedRoute>} />
