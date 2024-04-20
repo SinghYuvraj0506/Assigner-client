@@ -1,3 +1,4 @@
+import { Store } from "@/app/Store";
 import { apiSlice } from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 
@@ -16,6 +17,22 @@ const authApi = apiSlice.injectEndpoints({
                     dispatch(userRegistration({
                        token:result?.data?.data?.token
                     }))
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }),
+        updateUser : builder.mutation<ApiResponseType,{}>({
+            query: (data) => ({
+                url:"users/updateProfile",
+                method:"PATCH",
+                body:data,
+                credentials:"include"
+            }),
+            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+                try {
+                    const result = await queryFulfilled;
+                    await Store.dispatch(apiSlice.endpoints.loadUser.initiate({},{forceRefetch:true}))
                 } catch (error) {
                     console.log(error)
                 }
@@ -108,4 +125,4 @@ const authApi = apiSlice.injectEndpoints({
 
 
 
-export const {useRegisterUserMutation,useValidateUserMutation,useLoginUserMutation,useLogoutUserMutation,useSocialAuthUserMutation} = authApi;
+export const {useRegisterUserMutation,useValidateUserMutation,useLoginUserMutation,useLogoutUserMutation,useSocialAuthUserMutation,useUpdateUserMutation} = authApi;

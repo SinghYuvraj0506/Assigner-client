@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Main from "./pages/Main";
-import About from "./pages/About";
 import Contact from "./pages/Contact";
 import UserRoutes from "./Routes/UsersRoutes";
 import ModelController from "./components/Dialogs/Index";

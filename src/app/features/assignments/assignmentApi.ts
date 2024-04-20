@@ -48,6 +48,14 @@ const assignmentApi = apiSlice.injectEndpoints({
         };
       },
     }),
+    getApproxAmount:builder.mutation<ApiResponseType,{files:string[]}>({
+      query:(data) => ({
+        url: "assignments/getApproxAmount",
+        method: "POST",
+        body: data,
+        credentials: "include",
+      })
+    })
   }),
 });
 
@@ -55,4 +63,5 @@ export const {
   useCreateAssignmentMutation,
   useFileUploadMutation,
   useGetAllAssignmentsQuery,
+  useGetApproxAmountMutation
 } = assignmentApi;

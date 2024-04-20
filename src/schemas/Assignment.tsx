@@ -9,11 +9,6 @@ export const createAssigmentSchema = z.object({
     .max(new Date(Date.now() + 5184000000), {
       message: "Completion Date should be max 2 month",
     }),
-  amount: z.coerce
-    .number()
-    .int("Amount needs to be integer")
-    .positive("Amount Cannot be negative")
-    .min(30, "Minimum Amount For Assignment is 30"),
   delivery: z.string().min(10, "Enter a valid Delivery Address"),
   files: z
     .array(

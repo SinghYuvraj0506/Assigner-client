@@ -1,0 +1,51 @@
+
+/* Main cards animation ------- */
+.circle_card_main_page {
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+    cursor: pointer;
+  }
+  
+  .circle_card_main_page:hover {
+    transform: scale(1.25);
+    padding: unset;
+  }
+
+  .circle_card_main_page:hover svg {
+    display: none;
+  }
+  
+  .circle_card_main_page:hover p {
+    display: inline;
+    color: white;
+  }
+  
+  .circle_card_main_page:hover h2 {
+    color: white;
+  }
+  
+  
+
+  @media only screen and (max-width:600px) {
+    
+    .circle_card_main_page{
+      width:45vw;
+      height: 45vw;
+      gap: 5px;
+    }
+
+    .circle_card_main_page:hover {
+      transform: scale(1.2);
+
+    }
+
+  } 

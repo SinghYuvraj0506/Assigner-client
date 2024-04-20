@@ -35,6 +35,16 @@ export const apiSlice = createApi({
                     console.log(error)
                 }
             }
-        })
+        }),
+        getInstites:builder.query({
+            query:(data) => ({
+                url:"/institutions/getAll",
+                method:"GET",
+                credentials:"include"
+            })
+        }),
     })
 })
+
+
+export const {useGetInstitesQuery} = apiSlice;

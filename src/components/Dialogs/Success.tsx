@@ -11,7 +11,7 @@ import {
 const Success: React.FC = () => {
 
   return (
-    <Card className="mx-auto w-[30vw]">
+    <Card className="mx-auto w-[85vw] sm:w-[60vw] md:w-[40vw] xl:w-[30vw]">
       <CardHeader>
         <CardTitle className="text-xl">Sucessfully Created Assignment</CardTitle>
         <CardDescription>

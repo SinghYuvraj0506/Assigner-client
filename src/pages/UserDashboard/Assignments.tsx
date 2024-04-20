@@ -42,14 +42,14 @@ const TableSingleContent: React.FC<TableContentProps> = ({
       <TableCell className="font-medium">{index}</TableCell>
       <TableCell><StatusSpan status={status}/></TableCell>
       <TableCell>{name}</TableCell>
-      <TableCell>{amount}</TableCell>
+      <TableCell>{amount ?? "Yet to be decided"}</TableCell>
       <TableCell>{new Date(createdAt).toDateString()}</TableCell>
       <TableCell>{new Date(completionTime).toDateString()}</TableCell>
-      <TableCell>
+      {/* <TableCell>
         <div className="flex items-center justify-center">
           <Pencil size={17} className="cursor-pointer" />
         </div>
-      </TableCell>
+      </TableCell> */}
     </TableRow>
   );
 };
@@ -68,7 +68,7 @@ const Assignments = () => {
             <TableHead>Amount</TableHead>
             <TableHead>Created On</TableHead>
             <TableHead>Complete By</TableHead>
-            <TableHead>Action</TableHead>
+            {/* <TableHead>Action</TableHead> */}
           </TableRow>
         </TableHeader>
         <TableBody>

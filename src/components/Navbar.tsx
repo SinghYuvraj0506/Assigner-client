@@ -88,7 +88,7 @@ export const NavbarMain = () => {
   const location = useLocation()
 
   return (
-    <div className="w-full px-10 flex items-center justify-between py-4 font-inter">
+    <div className="w-full px-4 sm:px-10 flex items-center justify-between py-4 font-inter box-border">
       <div>
         <span className="text-xl font-bold text-primary-green cursor-pointer" onClick={()=>{navigate("/")}}>
           Assigner
@@ -96,9 +96,11 @@ export const NavbarMain = () => {
       </div>
 
       <div className="flex items-center gap-10">
+       {window.screen.width > 600 && <>
        {location.pathname !== "/pricing" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/pricing")}}>Pricing</span>}
        {location.pathname !== "/contact" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/contact")}}>Contact</span>}
-        <span className="cursor-pointer text-[16px]" onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6")}}>Join Us</span>
+        <span className="cursor-pointer text-[16px" onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6")}}>Join Us</span>
+        </>}
         <Button
           onClick={() => {
             isAuthenticated

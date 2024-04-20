@@ -5,7 +5,12 @@ interface User{
     fullName:string,
     email:string,
     status:0|1,
-    isVerified:true
+    isVerified:true,
+    phone:number,
+    institute:{
+        _id:string,name:string
+    },
+    location:{latitude:number,longitude:number}
 }
 
 export interface AuthState{
