@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../App.css"
 import { CirclePlus, LineChart, MessageSquareMore, Truck } from "lucide-react";
+import heroImage from "../assets/heroImage.png"
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Main: React.FC = () => {
             </Button>
           </section>
 
-          <img src="public/heroImage.png" alt="" className="h-[30vh] sm:h-[70vh] hidden sm:inline" />
+          <img src={heroImage} alt="" className="h-[30vh] sm:h-[70vh] hidden sm:inline" />
         </div>
 
         <div className="py-20">
