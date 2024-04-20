@@ -18,9 +18,9 @@ export interface AuthState{
     user:null | User
 }
 
-const initialState = {
+const initialState:AuthState = {
     token:"",
-    user:null
+    user: null
 }
 
 export const authSlice = createSlice({
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
         userRegistration:(state,action:PayloadAction<{token:string}>) =>{
             state.token = action.payload.token;
         },
-        userLoggedIn:(state,action:PayloadAction<{accessToken:string,user:{}}>) =>{
+        userLoggedIn:(state,action:PayloadAction<{accessToken:string,user:User}>) =>{
             state.token = action.payload.accessToken;
             state.user = action.payload.user;
         },

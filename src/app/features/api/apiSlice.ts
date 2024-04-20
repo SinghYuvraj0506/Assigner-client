@@ -9,19 +9,19 @@ export const apiSlice = createApi({
     }),
     endpoints: (builder) => ({
         refershToken:builder.query({
-            query:(data) => ({
+            query:() => ({
                 url:"/users/refreshToken",
                 method:"GET",
                 credentials:"include"
             })
         }),
         loadUser:builder.query({
-            query:(data) => ({
+            query:() => ({
                 url:"/users/me",
                 method:"GET",
                 credentials:"include"
             }),
-            async onQueryStarted(arg,{queryFulfilled,dispatch}){
+            async onQueryStarted(_,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled
                     localStorage.setItem("isAuthenticated","true")
@@ -37,7 +37,7 @@ export const apiSlice = createApi({
             }
         }),
         getInstites:builder.query({
-            query:(data) => ({
+            query:() => ({
                 url:"/institutions/getAll",
                 method:"GET",
                 credentials:"include"

@@ -8,7 +8,7 @@ import Success from "./Success";
 
 const Index = () => {
   const generalState: GeneralStateInterface = useSelector(
-    (state) => state.general
+    (state:any) => state.general
   );
 
   return (

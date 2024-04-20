@@ -69,8 +69,8 @@ export const NavbarUserDashboard: React.FC<NavbarProps> = ({
           <DropdownMenuItem>Feedback</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => {
-              logoutUser();
+            onClick={async () => {
+              await logoutUser(null);
             }}
           >
             Logout
