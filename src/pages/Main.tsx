@@ -23,7 +23,7 @@ const Main: React.FC = () => {
         <div className="w-full flex items-center justify-between h-[90vh] font-inter">
           <section className="flex flex-col sm:items-start items-center text-center sm:text-left justify-center gap-5 sm:gap-8 w-full">
             <h1 className="text-4xl md:text-8xl font-medium">
-              Get Your{" "}
+              Hi, Get Your{" "}
               <span className="font-bold text-primary-green">assignments</span>{" "}
               done
             </h1>
