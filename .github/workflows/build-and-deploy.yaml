@@ -31,6 +31,8 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install
+          touch .env
+          echo VITE_HOST_URL = "https://assigner-api.livetesting.tech" > .env
           npm run build
 
       - name: Copy files to S3 storage
