@@ -74,7 +74,7 @@ export const SidebarDesktop: React.FC<SidebarProps> = ({ optionsArray }) => {
 export const SidebarMobile: React.FC<SidebarProps> = ({ optionsArray }) => {
   const navigate = useNavigate()
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen pb-12 box-border">
       <nav className="grid gap-2 text-lg font-medium">
         <Link
           to="/"

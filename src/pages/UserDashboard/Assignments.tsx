@@ -58,8 +58,8 @@ const Assignments = () => {
   const { isLoading, data } = useGetAllAssignmentsQuery({});
 
   return (
-    <div>
-      <Table>
+    <div className="w-full overflow-auto">
+      <Table className="w-max md:w-full">
         <TableHeader>
           <TableRow className="h-10 mb-10">
             <TableHead>Sr. No</TableHead>

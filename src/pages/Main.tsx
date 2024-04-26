@@ -22,15 +22,13 @@ const Main: React.FC = () => {
       <div className="w-full px-4 sm:px-10 flex flex-col items-center mb-10">
         <div className="w-full flex items-center justify-between h-[90vh] font-inter">
           <section className="flex flex-col sm:items-start items-center text-center sm:text-left justify-center gap-5 sm:gap-8 w-full">
-            <h1 className="text-4xl md:text-8xl font-medium">
-              Hi, Get Your{" "}
-              <span className="font-bold text-primary-green">assignments</span>{" "}
-              done
+            <h1 className="text-5xl md:text-8xl font-medium">
+            Get Your <span className="font-bold text-primary-green">Assignments </span>{" "}
+            Sorted!
             </h1>
 
-            <p className="text-sm sm:text-xl w-5/6 sm:w-1/2 font-medium">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum,
-              iusto.
+            <p className="text-sm sm:text-xl w-5/6 sm:w-3/4 font-medium">
+            Quality assignments, delivered hassle-free.
             </p>
 
             <Button
@@ -55,8 +53,7 @@ const Main: React.FC = () => {
               Assign Your Work
               </h2>
               <p className="hidden w-full text-xs sm:text-sm sm:w-5/6 leading-tight md:leading-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                iusto? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, sit?
+              Delegate tasks effortlessly! Simply assign your assignments to skilled professionals and watch them work their magic.
               </p>
             </div>
 
@@ -66,8 +63,7 @@ const Main: React.FC = () => {
               Track Assignment
               </h2>
               <p className="hidden w-full text-xs sm:text-sm sm:w-5/6 leading-tight md:leading-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                iusto? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, sit?
+              Stay in the loop every step of the way! Track the progress of your assignments in real-time and ensure timely completion.
               </p>
             </div>
 
@@ -77,8 +73,7 @@ const Main: React.FC = () => {
               Get Whatsapp Updates
               </h2>
               <p className="hidden w-full text-xs sm:text-sm sm:w-5/6 leading-tight md:leading-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                iusto? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, sit?
+              Instant notifications, instant peace of mind! Receive updates on your assignments directly to your WhatsApp, keeping you informed and stress-free.
               </p>
             </div>
 
@@ -88,8 +83,7 @@ const Main: React.FC = () => {
               Get Delivered
               </h2>
               <p className="hidden w-full text-xs sm:text-sm sm:w-5/6 leading-tight md:leading-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo,
-                iusto? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, sit?
+              On-time delivery, every time! Sit back and relax as your completed assignments are promptly delivered to you, ready for submission.
               </p>
             </div>
           </section>

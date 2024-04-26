@@ -11,8 +11,8 @@ const DashboardWrapper = (
   const EnhancedDashboard: React.FC = (props) => {
     const navigate = useNavigate()
     return (
-      <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-        <div className="flex items-center">
+      <main className="flex flex-col gap-4 p-4 lg:gap-6 lg:p-6 w-screen md:w-full box-border">
+        <div className="flex items-center justify-between">
           <h1 className="text-lg font-semibold md:text-2xl">{headingTitle}</h1>
           {buttonText && (
             <Button
