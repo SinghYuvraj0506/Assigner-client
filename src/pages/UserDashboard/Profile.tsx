@@ -17,6 +17,7 @@ import useApiFeedback from "@/lib/hooks/useApiFeedback";
 import useAuth from "@/lib/hooks/useAuth";
 import { EditProfileSchema } from "@/schemas/Profile";
 import { zodResolver } from "@hookform/resolvers/zod";
+import mixpanel from "mixpanel-browser";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -65,6 +66,7 @@ const Profile = () => {
   }, [user]);
 
   const detectLocation = async () => {
+    mixpanel.track("Detect Loaction clicked")
     const load = toast.loading("Detecting Please Wait....");
     const successCallback = (position: GeolocationPosition) => {
       const { latitude, longitude } = position.coords;
@@ -87,6 +89,8 @@ const Profile = () => {
   };
 
   const onSubmit = async (values: z.infer<typeof EditProfileSchema>) => {
+    mixpanel.track("Update profile clicked")
+    
     await updateUser(values);
   };
 

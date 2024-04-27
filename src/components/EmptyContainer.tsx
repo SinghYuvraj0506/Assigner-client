@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import mixpanel from "mixpanel-browser";
 
 interface EmptyContainerProps{
     title:string,
@@ -23,7 +24,7 @@ const EmptyContainer: React.FC<EmptyContainerProps> = ({title,desc,buttonText,bu
         <p className="text-sm text-muted-foreground">
           {desc}
         </p>
-       {buttonText && <Button className="mt-4" onClick={()=>{buttonURL && navigate(buttonURL)}}>{buttonText}</Button>}
+       {buttonText && <Button className="mt-4" onClick={()=>{buttonURL && navigate(buttonURL); mixpanel.track("Button Clicked in Empty Conatiner" + buttonText)}}>{buttonText}</Button>}
       </div>
     </div>
   );

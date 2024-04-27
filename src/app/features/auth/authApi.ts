@@ -4,6 +4,7 @@ import { userLoggedIn, userLoggedOut, userRegistration } from "./authSlice";
 import { EditProfileSchema } from "@/schemas/Profile";
 import { LoginUserSchema, SignupUserSchema } from "@/schemas/Auth";
 import { z } from "zod";
+import mixpanel from "mixpanel-browser";
 
 interface ValidateUser {
   token: string;
@@ -16,8 +17,8 @@ interface SocialAuthUser {
   signInFrom: "google" | "email";
 }
 
-interface LoginUser extends z.infer<typeof LoginUserSchema>{
-    signInFrom: "google" | "email";
+interface LoginUser extends z.infer<typeof LoginUserSchema> {
+  signInFrom: "google" | "email";
 }
 
 const authApi = apiSlice.injectEndpoints({
@@ -80,6 +81,12 @@ const authApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
           localStorage.setItem("isAuthenticated", "true");
+          mixpanel.identify(result?.data?.data?.user?.email);
+          mixpanel.people.set_once({
+            $first_name: result?.data?.data?.user?.fullName?.split(" ")[0],
+            $last_name: result?.data?.data?.user?.fullName?.split(" ")[1],
+            $email: result?.data?.data?.user?.email,
+          });
           dispatch(
             userLoggedIn({
               accessToken: result?.data?.data?.accessToken,
@@ -106,6 +113,12 @@ const authApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
           localStorage.setItem("isAuthenticated", "true");
+          mixpanel.identify(result?.data?.data?.user?.email);
+          mixpanel.people.set_once({
+            $first_name: result?.data?.data?.user?.fullName?.split(" ")[0],
+            $last_name: result?.data?.data?.user?.fullName?.split(" ")[1],
+            $email: result?.data?.data?.user?.email,
+          });
           dispatch(
             userLoggedIn({
               accessToken: result?.data?.data?.accessToken,
@@ -117,7 +130,7 @@ const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
-    loginUser: builder.mutation<ApiResponseType,LoginUser>({
+    loginUser: builder.mutation<ApiResponseType, LoginUser>({
       query: ({ email, password, signInFrom }) => ({
         url: "users/login",
         method: "POST",
@@ -132,6 +145,12 @@ const authApi = apiSlice.injectEndpoints({
         try {
           const result = await queryFulfilled;
           localStorage.setItem("isAuthenticated", "true");
+          mixpanel.identify(result?.data?.data?.user?.email);
+          mixpanel.people.set_once({
+            $first_name: result?.data?.data?.user?.fullName?.split(" ")[0],
+            $last_name: result?.data?.data?.user?.fullName?.split(" ")[1],
+            $email: result?.data?.data?.user?.email,
+          });
           dispatch(
             userLoggedIn({
               accessToken: result?.data?.data?.accessToken,
@@ -143,7 +162,7 @@ const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
-    logoutUser: builder.mutation<ApiResponseType,null>({
+    logoutUser: builder.mutation<ApiResponseType, null>({
       query: () => ({
         url: "users/logout",
         method: "POST",
@@ -153,7 +172,9 @@ const authApi = apiSlice.injectEndpoints({
         try {
           await queryFulfilled;
           localStorage.removeItem("isAuthenticated");
+          mixpanel.reset();
           dispatch(userLoggedOut());
+          dispatch(apiSlice.util.resetApiState());
         } catch (error) {
           console.log(error);
         }

@@ -21,6 +21,7 @@ import { ACCEPTED_FILE_TYPES } from "@/lib/constants";
 import useApiFeedback from "@/lib/hooks/useApiFeedback";
 import { createAssigmentSchema } from "@/schemas/Assignment";
 import { zodResolver } from "@hookform/resolvers/zod";
+import mixpanel from "mixpanel-browser";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -110,6 +111,10 @@ const CreateAssignment = () => {
   );
 
   async function onSubmit(values: z.infer<typeof createAssigmentSchema>) {
+    mixpanel.track("Submit Assignment clicked",{
+      name:values?.name,
+      amount:values?.amount
+    })
     if (!uploadedFileArray) {
       const formData = new FormData();
       formData.append("usage", "assignments");
@@ -141,7 +146,7 @@ const CreateAssignment = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        onReset={() => form.reset()}
+        onReset={() => {form.reset(); mixpanel.track("Reset Assignment clicked")}}
         className="w-full md:w-3/4 h-full flex flex-col gap-8 "
       >
         <div>

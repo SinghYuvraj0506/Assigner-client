@@ -17,6 +17,7 @@ import { useLogoutUserMutation } from "@/app/features/auth/authApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ChangeModalStatus } from "@/app/features/general/GeneralSlice";
+import mixpanel from 'mixpanel-browser';
 
 interface NavbarProps {
   sidebarMobileOptions: sidebarOptionType[];
@@ -44,16 +45,6 @@ export const NavbarUserDashboard: React.FC<NavbarProps> = ({
         </SheetContent>
       </Sheet>
       <div className="w-full flex-1">
-        {/* <form>
-          <div className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search assignments..."
-              className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-            />
-          </div>
-        </form> */}
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -65,13 +56,14 @@ export const NavbarUserDashboard: React.FC<NavbarProps> = ({
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={()=>{navigate("/pricing")}}>Pricing</DropdownMenuItem>
-          <DropdownMenuItem onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6")}}>Join Us!!</DropdownMenuItem>
+          <DropdownMenuItem onClick={()=>{navigate("/pricing");mixpanel.track("Pricing tab on Navbar User Dashboard")}}>Pricing</DropdownMenuItem>
+          <DropdownMenuItem onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6");;mixpanel.track("Start Writing tab on Navbar User Dashboard")}}>Start Writing with Us</DropdownMenuItem>
           {/* <DropdownMenuItem>Feedback</DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={async () => {
               await logoutUser(null);
+              mixpanel.track("Logout on Navbar User Dashboard")
             }}
           >
             Logout
@@ -91,19 +83,20 @@ export const NavbarMain = () => {
   return (
     <div className="w-full px-4 sm:px-10 flex items-center justify-between py-4 font-inter box-border">
       <div>
-        <span className="text-xl font-bold text-primary-green cursor-pointer flex items-center gap-2" onClick={()=>{navigate("/")}}>
+        <span className="text-xl font-bold text-primary-green cursor-pointer flex items-center gap-2" onClick={()=>{navigate("/");mixpanel.track("Assigner Navbar Logo Clicked")}}>
           <img src="/logo.png" alt="" className="w-5"/>Assigner
         </span>
       </div>
 
       <div className="flex items-center gap-10">
        {window.screen.width > 600 && <>
-       {location.pathname !== "/pricing" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/pricing")}}>Pricing</span>}
-       {location.pathname !== "/contact" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/contact")}}>Contact</span>}
-        <span className="cursor-pointer text-[16px" onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6")}}>Join Us</span>
+       {location.pathname !== "/pricing" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/pricing");mixpanel.track("Pricing tab on Navbar")}}>Pricing</span>}
+       {location.pathname !== "/contact" && <span className="cursor-pointer text-[16px]" onClick={()=>{navigate("/contact");mixpanel.track("Contact tab on Navbar")}}>Contact</span>}
+        <span className="cursor-pointer text-[16px" onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6");mixpanel.track("Start Writing tab on Navbar")}}>Start Writing with Us</span>
         </>}
         <Button
           onClick={() => {
+            mixpanel.track(isAuthenticated ? "Clicked Dashboard on Navbar" : "Clicked Login on Navbar");
             isAuthenticated
               ? navigate("/user")
               : dispatch(ChangeModalStatus({ value: true, type: "Login" }));

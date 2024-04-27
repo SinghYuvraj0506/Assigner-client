@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import "../App.css"
 import { CirclePlus, LineChart, MessageSquareMore, Truck } from "lucide-react";
 import heroImage from "../assets/heroImage.png"
+import mixpanel from "mixpanel-browser";
 
 const Main: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const Main: React.FC = () => {
 
             <Button
               onClick={() => {
+                mixpanel.track("Assign your work clicked on Landing Page")
                 isAuthenticated
                   ? navigate("/user/create-assignment")
                   : dispatch(ChangeModalStatus({ value: true, type: "Login" }));

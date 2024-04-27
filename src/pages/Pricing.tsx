@@ -1,4 +1,5 @@
 import { NavbarMain } from '@/components/Navbar'
+import mixpanel from 'mixpanel-browser';
 import React, { useState } from 'react'
 
 const Pricing = () => {
@@ -91,7 +92,7 @@ const Pricing = () => {
                     ? 'bg-primary-green text-white'
                     : 'text-gray-900'
                 } mr-2 sm:mr-4 px-3 sm:px-4 py-1 sm:py-2 rounded-md font-medium focus:outline-none transition duration-300 ease-in-out hover:bg-green-800 hover:text-white`}
-                onClick={() => setActiveTab('withoutResearch')}
+                onClick={() => {setActiveTab('withoutResearch');mixpanel.track("Without Research tab clicked on pricing")}}
               >
                 Without Research
               </button>
@@ -101,7 +102,7 @@ const Pricing = () => {
                     ? 'bg-primary-green text-white'
                     : 'text-gray-900'
                 } px-3 sm:px-4 py-1 sm:py-2 rounded-md font-medium focus:outline-none transition duration-300 ease-in-out hover:bg-primary-green hover:text-white`}
-                onClick={() => setActiveTab('withResearch')}
+                onClick={() => {setActiveTab('withResearch');mixpanel.track("With Research tab clicked on pricing")}}
               >
                 With Research
               </button>

@@ -1,4 +1,5 @@
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Linkedin, Mail, Twitter } from "lucide-react";
+import mixpanel from "mixpanel-browser";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -15,12 +16,13 @@ const Footer = () => {
           assigner.
         </span>
 
-        <section className="text-white flex gap-6 items-center sm:hidden">
+        <section className="text-white flex gap-6 items-center sm:hidden w-max">
           {location.pathname !== "/pricing" && (
             <span
               className="cursor-pointer text-[16px]"
               onClick={() => {
                 navigate("/pricing");
+                mixpanel.track("Pricing tab clicked on footer")
               }}
             >
               Pricing
@@ -31,6 +33,7 @@ const Footer = () => {
               className="cursor-pointer text-[16px]"
               onClick={() => {
                 navigate("/contact");
+                mixpanel.track("Contact tab clicked on footer")
               }}
             >
               Contact
@@ -40,22 +43,28 @@ const Footer = () => {
             className="cursor-pointer text-[16px]"
             onClick={() => {
               window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6");
+              mixpanel.track("Start Writing tab clicked on footer")
             }}
           >
-            Join Us
+            Start Writing with Us
           </span>
         </section>
 
         <section className="flex items-center justify-center gap-5">
-          <span className="p-2 bg-white rounded-full cursor-pointer hover:bg-primary-green hover:text-white">
-            <Instagram />
+          <span className="p-2 bg-white rounded-full cursor-pointer hover:bg-primary-green hover:text-white"
+            onClick={()=>{
+              window.open("mailto:singhyuvraj0506@gmail.com");
+              mixpanel.track("Email footer")
+            }}
+          >
+            <Mail />
           </span>
-          <span className="p-2 bg-white rounded-full cursor-pointer hover:bg-primary-green hover:text-white">
+          {/* <span className="p-2 bg-white rounded-full cursor-pointer hover:bg-primary-green hover:text-white">
             <Linkedin />
           </span>
           <span className="p-2 bg-white rounded-full cursor-pointer hover:bg-primary-green hover:text-white">
             <Twitter />
-          </span>
+          </span> */}
         </section>
       </section>
 

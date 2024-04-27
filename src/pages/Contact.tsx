@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { ChevronRight, Instagram, Mail } from "lucide-react";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import mixpanel from "mixpanel-browser";
 
 interface PersonProps {
   name: string;
@@ -23,14 +24,17 @@ const PersonCard: React.FC<PersonProps> = ({
 }) => {
   const handleInsta = () => {
     window.open(instaLink);
+    mixpanel.track("Clicked instagram of" + name)
   };
 
   const handleLinkedin = () => {
     window.open(linkedinLink);
+    mixpanel.track("Clicked linkedin of" + name)
   };
 
   const handleEmail = () => {
     window.open("mailto:" + email);
+    mixpanel.track("Clicked email of" + name)
   };
 
   return (

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import mixpanel from "mixpanel-browser";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +20,7 @@ const DashboardWrapper = (
               className="ml-auto"
               onClick={() => {
                 buttonUrl && navigate(buttonUrl);
+                mixpanel.track("Clicked button" + buttonText)
               }}
             >
               {buttonText}

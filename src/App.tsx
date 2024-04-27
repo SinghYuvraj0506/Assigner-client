@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Main from "./pages/Main";
 import Contact from "./pages/Contact";
@@ -8,8 +8,20 @@ import { Toaster } from "react-hot-toast";
 import Check from "./pages/UserDashboard/Check";
 import ProtectedRoute from "./lib/ProtectedRoute";
 import Pricing from "./pages/Pricing";
+import mixpanel from 'mixpanel-browser';
+import { useEffect } from "react";
+
 
 function App() {
+  const location = useLocation()
+  mixpanel.init(import.meta.env.VITE_MIXPANEL_TOKEN, {debug: true, persistence: 'localStorage'});
+
+
+  useEffect(() => {
+    mixpanel.track_pageview({})
+  }, [location])
+  
+
   return (
     <div>
       <ModelController />
