@@ -14,7 +14,7 @@ const EmptyContainer: React.FC<EmptyContainerProps> = ({title,desc,buttonText,bu
     const navigate = useNavigate()
   return (
     <div
-      className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
+      className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm h-full"
       x-chunk="dashboard-02-chunk-1"
     >
       <div className="flex flex-col items-center gap-1 text-center">

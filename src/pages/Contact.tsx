@@ -79,7 +79,7 @@ const PersonCard: React.FC<PersonProps> = ({
 
 const Contact: React.FC = () => {
   return (
-    <div className="w-full">
+    <div className="w-full pb-20">
       <NavbarMain />
       <div className="w-full flex items-center flex-col gap-10 justify-center h-max pt-10 sm:p-0 sm:h-[80vh] font-inter">
         <div className="flex flex-col gap-3 sm:gap-5 items-center text-center">
@@ -89,7 +89,7 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center gap-10 sm:gap-32 flex-col sm:flex-row">
+        <div className="flex items-center gap-8 sm:gap-32 flex-col sm:flex-row">
           <PersonCard
             name="Yuvraj Singh"
             instaLink="https://www.instagram.com/ssinghyuvraj02/"
@@ -97,6 +97,13 @@ const Contact: React.FC = () => {
             email="singhyuvraj0506@gmail.com"
             profile="https://res.cloudinary.com/drip0dev6/image/upload/v1713583937/Screenshot_2024-04-20_at_9.02.06_AM_c17lpn.png"
           />
+            <PersonCard
+              name="Jyoti Kumari"
+              instaLink="https://www.instagram.com/__itz_jyotiii__/"
+              linkedinLink="https://www.linkedin.com/in/jyotikumari2007/"
+              email="singhhjyoti0705@gmail.com"
+              profile="https://res.cloudinary.com/drip0dev6/image/upload/v1714236114/Screenshot_2024-04-27_at_10.11.44_PM_m0voxj.png"
+            />
           <PersonCard
             name="Jatin Jayant"
             instaLink="https://www.instagram.com/jatin_jayant_/"
