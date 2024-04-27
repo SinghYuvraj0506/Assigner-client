@@ -32,7 +32,7 @@ jobs:
         run: |
           npm install
           touch .env
-          echo VITE_HOST_URL = "https://assigner-api.livetesting.tech" > .env
+          echo VITE_HOST_URL = https://assigner-api.livetesting.tech > .env
           echo VITE_MIXPANEL_TOKEN = aa6ae0c89dacc9a19924f4570b7a40bf > .env
           npm run build
 
