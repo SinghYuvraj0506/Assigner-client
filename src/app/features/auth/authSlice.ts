@@ -1,22 +1,5 @@
+import { AuthState, User } from "@/lib/constants";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface User{
-    _id:string,
-    fullName:string,
-    email:string,
-    status:0|1,
-    isVerified:true,
-    phone:number,
-    institute:{
-        _id:string,name:string
-    },
-    location:{latitude:number,longitude:number}
-}
-
-export interface AuthState{
-    token:string,
-    user:null | User
-}
 
 const initialState:AuthState = {
     token:"",

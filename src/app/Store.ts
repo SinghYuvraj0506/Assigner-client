@@ -3,6 +3,7 @@ import { apiSlice } from "./features/api/apiSlice";
 import { generalSlice } from "./features/general/GeneralSlice";
 import { authSlice } from "./features/auth/authSlice";
 
+
 export const Store = configureStore({
   reducer: {
     "general":generalSlice.reducer,

@@ -20,11 +20,11 @@ interface TableContentProps {
   instructions: string;
   completionTime: string;
   createdAt: string;
-  status: string;
-  index: string;
+  status: 1 | 2;
+  index: number;
 }
 
-const StatusSpan = ({ status }) => {
+export const StatusSpan = ({ status }) => {
   return (
     <span
       className={`rounded-lg text-white px-2 py-1 text-xs ${
@@ -65,7 +65,7 @@ const TableSingleContent: React.FC<TableContentProps> = ({
 };
 
 const Assignments = () => {
-  const { isLoading, data } = useGetAllAssignmentsQuery({});
+  const { isLoading , data } = useGetAllAssignmentsQuery({});
 
   if (isLoading) {
     return <Loader />;
@@ -73,7 +73,7 @@ const Assignments = () => {
 
   return (
     <div className="w-full overflow-auto h-full">
-      {data?.data?.data?.length > 0 ? (
+      {(data?.data?.count && data?.data?.count > 0) ? (
         <Table className="w-max md:w-full">
           <TableHeader>
             <TableRow className="h-10 mb-10">

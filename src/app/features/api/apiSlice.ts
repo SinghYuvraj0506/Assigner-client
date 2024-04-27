@@ -4,6 +4,7 @@ import { userLoggedIn } from "../auth/authSlice"
 
 export const apiSlice = createApi({
     reducerPath:"api",
+    tagTypes:["auth","assignments"],
     baseQuery:fetchBaseQuery({
         baseUrl:import.meta.env.VITE_HOST_URL+"/api/v1",
     }),

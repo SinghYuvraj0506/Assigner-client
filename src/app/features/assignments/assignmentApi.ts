@@ -1,10 +1,11 @@
+import { ApiResponseType, AssignmentResponse } from "@/lib/constants";
 import { apiSlice } from "../api/apiSlice";
 
 interface createAssignmentBody {
   name: string;
   instructions: string;
   completionTime: string;
-  amount: number;
+  amount: string | null;
   delivery: string;
   fileIdArray: string[];
 }
@@ -18,6 +19,7 @@ const assignmentApi = apiSlice.injectEndpoints({
         body: data,
         credentials: "include",
       }),
+      invalidatesTags:["assignments"]
     }),
     fileUpload: builder.mutation<ApiResponseType, FormData>({
       query: (data) => ({
@@ -28,7 +30,7 @@ const assignmentApi = apiSlice.injectEndpoints({
       }),
     }),
     getAllAssignments: builder.query<
-      ApiResponseType,
+      AssignmentResponse,
       {
         page?: number;
         limit?: number;
@@ -47,6 +49,7 @@ const assignmentApi = apiSlice.injectEndpoints({
           credentials: "include",
         };
       },
+      providesTags:["assignments"]
     }),
     getApproxAmount:builder.mutation<ApiResponseType,{files:string[]}>({
       query:(data) => ({

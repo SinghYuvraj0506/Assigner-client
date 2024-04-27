@@ -96,16 +96,16 @@ const CreateAssignment = () => {
     amountSuccess,
     amountLoading,
     amountError,
-    amountData?.message || "Assignment Created Successfully",
-    "Please wait, while we are estimating the amount..",
-    amountData?.data?.message || "Something went wrong",
+    amountData?.message || "Amount Calculated successfully",
+    "Calculating the amount...",
+    amountError?.data?.message || "Something went wrong",
     () => {
       setAmountStatus(true);
       if(!isNaN(amountData?.data?.amount)){
         form.setValue("amount",amountData?.data?.amount)
       }
       else{
-        toast.error("Problem while estimating, we will inform you soon.")
+        toast.error("Problem while calculating the amount, we will inform you soon, Please submit your assignment")
       }
     }
   );
@@ -115,6 +115,7 @@ const CreateAssignment = () => {
       name:values?.name,
       amount:values?.amount
     })
+
     if (!uploadedFileArray) {
       const formData = new FormData();
       formData.append("usage", "assignments");
@@ -134,7 +135,7 @@ const CreateAssignment = () => {
           name: values?.name,
           instructions: values?.instructions,
           completionTime: values?.completionTime,
-          amount: values?.amount,
+          amount: form.getValues("amount") ?? null,
           delivery: values?.delivery,
           fileIdArray: uploadedFileArray ?? data?.data,
         });
@@ -261,7 +262,7 @@ const CreateAssignment = () => {
             Reset
           </Button>
           <Button type="submit" className="w-max">
-            Save and Submit
+            {amountStatus ? "Save and Submit" : "Calculate the amount"}
           </Button>
         </div>
       </form>
