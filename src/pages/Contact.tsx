@@ -4,7 +4,7 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { ChevronRight, Instagram, Mail } from "lucide-react";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import mixpanel from "mixpanel-browser";
 
 interface PersonProps {
@@ -24,17 +24,17 @@ const PersonCard: React.FC<PersonProps> = ({
 }) => {
   const handleInsta = () => {
     window.open(instaLink);
-    mixpanel.track("Clicked instagram of" + name)
+    mixpanel.track("Clicked instagram of" + name);
   };
 
   const handleLinkedin = () => {
     window.open(linkedinLink);
-    mixpanel.track("Clicked linkedin of" + name)
+    mixpanel.track("Clicked linkedin of" + name);
   };
 
   const handleEmail = () => {
     window.open("mailto:" + email);
-    mixpanel.track("Clicked email of" + name)
+    mixpanel.track("Clicked email of" + name);
   };
 
   return (
@@ -91,25 +91,25 @@ const Contact: React.FC = () => {
 
         <div className="flex items-center gap-8 sm:gap-32 flex-col sm:flex-row">
           <PersonCard
-            name="Yuvraj Singh"
-            instaLink="https://www.instagram.com/ssinghyuvraj02/"
-            linkedinLink="https://www.linkedin.com/in/singh-yuvraj002/"
-            email="singhyuvraj0506@gmail.com"
-            profile="https://res.cloudinary.com/drip0dev6/image/upload/v1713583937/Screenshot_2024-04-20_at_9.02.06_AM_c17lpn.png"
-          />
-            <PersonCard
-              name="Jyoti Kumari"
-              instaLink="https://www.instagram.com/__itz_jyotiii__/"
-              linkedinLink="https://www.linkedin.com/in/jyotikumari2007/"
-              email="singhhjyoti0705@gmail.com"
-              profile="https://res.cloudinary.com/drip0dev6/image/upload/v1714236114/Screenshot_2024-04-27_at_10.11.44_PM_m0voxj.png"
-            />
-          <PersonCard
             name="Jatin Jayant"
             instaLink="https://www.instagram.com/jatin_jayant_/"
             linkedinLink="https://www.linkedin.com/in/jatin-jayant-22459a22b/"
             email="jatinjayant06@gmail.com"
             profile="https://res.cloudinary.com/drip0dev6/image/upload/v1713583700/Screenshot_2024-04-20_at_8.58.10_AM_x0fvxk.png"
+          />
+          <PersonCard
+            name="Jyoti Kumari"
+            instaLink="https://www.instagram.com/__itz_jyotiii__/"
+            linkedinLink="https://www.linkedin.com/in/jyotikumari2007/"
+            email="singhhjyoti0705@gmail.com"
+            profile="https://res.cloudinary.com/drip0dev6/image/upload/v1714236114/Screenshot_2024-04-27_at_10.11.44_PM_m0voxj.png"
+          />
+          <PersonCard
+            name="Yuvraj Singh"
+            instaLink="https://www.instagram.com/ssinghyuvraj02/"
+            linkedinLink="https://www.linkedin.com/in/singh-yuvraj002/"
+            email="singhyuvraj0506@gmail.com"
+            profile="https://res.cloudinary.com/drip0dev6/image/upload/v1713583937/Screenshot_2024-04-20_at_9.02.06_AM_c17lpn.png"
           />
         </div>
       </div>
