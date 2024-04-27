@@ -25,7 +25,7 @@ export const SidebarDesktop: React.FC<SidebarProps> = ({ optionsArray }) => {
   return (
     <div className="hidden border-r bg-muted/40 md:block h-screen overflow-hidden sticky left-0 top-0">
       <div className="flex h-full max-h-screen flex-col gap-2">
-        <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
+        <div className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[55px] lg:px-6 box-border">
           <Link to="/" className="flex items-center gap-2 font-semibold">
             <span className="text-primary-green font-bold">Assigner</span>
           </Link>
@@ -74,7 +74,7 @@ export const SidebarDesktop: React.FC<SidebarProps> = ({ optionsArray }) => {
 export const SidebarMobile: React.FC<SidebarProps> = ({ optionsArray }) => {
   const navigate = useNavigate()
   return (
-    <div className="flex flex-col h-screen pb-12 box-border">
+    <div className="flex flex-col h-screen pb-20 md:pb-10 box-border">
       <nav className="grid gap-2 text-lg font-medium">
         <Link
           to="/"

@@ -148,7 +148,7 @@ const Profile = () => {
                 <FormLabel>Institute Name</FormLabel>
                 <FormControl>
                   <SearchDropdown
-                    placeholder="DSEU Okhlasdaa 2 Campus"
+                    placeholder="Select your college name"
                     setCurrentValue={(e) => {
                       form.setValue("institute", e);
                     }}

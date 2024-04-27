@@ -26,6 +26,7 @@ export const NavbarUserDashboard: React.FC<NavbarProps> = ({
   sidebarMobileOptions,
 }) => {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const [logoutUser] = useLogoutUserMutation();
 
@@ -64,9 +65,9 @@ export const NavbarUserDashboard: React.FC<NavbarProps> = ({
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Pricing</DropdownMenuItem>
+          <DropdownMenuItem onClick={()=>{navigate("/pricing")}}>Pricing</DropdownMenuItem>
           <DropdownMenuItem onClick={()=>{window.open("https://forms.gle/2FYMWrPM2Tj6EUkJ6")}}>Join Us!!</DropdownMenuItem>
-          <DropdownMenuItem>Feedback</DropdownMenuItem>
+          {/* <DropdownMenuItem>Feedback</DropdownMenuItem> */}
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={async () => {
@@ -90,8 +91,8 @@ export const NavbarMain = () => {
   return (
     <div className="w-full px-4 sm:px-10 flex items-center justify-between py-4 font-inter box-border">
       <div>
-        <span className="text-xl font-bold text-primary-green cursor-pointer" onClick={()=>{navigate("/")}}>
-          Assigner
+        <span className="text-xl font-bold text-primary-green cursor-pointer flex items-center gap-2" onClick={()=>{navigate("/")}}>
+          <img src="/logo.png" alt="" className="w-5"/>Assigner
         </span>
       </div>
 
