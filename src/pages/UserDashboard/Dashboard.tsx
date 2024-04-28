@@ -24,7 +24,7 @@ import { Assignment } from "@/lib/constants";
 
 const AssignmentCard: React.FC<Assignment> = ({ name, status, files,amount,completionTime }) => {
   return (
-    <Card className="w-full max-w-[320px] mx-auto">
+    <Card className="w-full mx-auto">
       <CardHeader>
         <div className="w-full flex items-center justify-between">
           <CardTitle>{name}</CardTitle>
@@ -37,11 +37,11 @@ const AssignmentCard: React.FC<Assignment> = ({ name, status, files,amount,compl
             <CarouselContent>
               {files?.map((file, index) => {
                 return (
-                  <CarouselItem>
+                  <CarouselItem className="flex items-center justify-center flex-col">
                     <img
                       src={file?.fileType !== "application/pdf" ? file?.fileUrl : "https://play-lh.googleusercontent.com/9XKD5S7rwQ6FiPXSyp9SzLXfIue88ntf9sJ9K250IuHTL7pmn2-ZB0sngAX4A2Bw4w"}
                       alt=""
-                      className="object-cover"
+                      className="object-contain w-full max-h-[300px]"
                     />
                     {file?.fileType === "application/pdf" && <span className="mx-auto text-sm w-full">{file?.fileName?.length > 30 ? file?.fileName.slice(0,30) + "..." : file?.fileName}</span>}
                   </CarouselItem>
