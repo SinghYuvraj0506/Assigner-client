@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import DashboardWrapper from "@/lib/HOC/DashboardWrapper";
 import { ACCEPTED_FILE_TYPES } from "@/lib/constants";
 import useApiFeedback from "@/lib/hooks/useApiFeedback";
+import useAuth from "@/lib/hooks/useAuth";
 import { createAssigmentSchema } from "@/schemas/Assignment";
 import { zodResolver } from "@hookform/resolvers/zod";
 import mixpanel from "mixpanel-browser";
@@ -33,6 +34,8 @@ const CreateAssignment = () => {
   const navigate = useNavigate();
   const [uploadedFileArray, setUploadedFileArray] = useState(null);
   const [amountStatus, setAmountStatus] = useState(false);
+  
+  const {user} = useAuth()
 
   const [fileUpload, { isLoading, isSuccess, error, data }] =
     useFileUploadMutation();
@@ -143,6 +146,26 @@ const CreateAssignment = () => {
     }
   }
 
+  const handleSampleCopy = () =>{
+    mixpanel.track("Sample instructions copy")
+
+    const sampleInstructions = `
+      Name - John Snow,
+      Roll no - 2312312312,
+      Branch - Mechanical Engg (5th Sem)
+      Subject - Engineering Physics
+      Assignment - 1
+    `
+
+    form.setValue("instructions",sampleInstructions)
+  }
+
+
+  const handleCopyInstitute = () =>{
+    mixpanel.track("copy institute to delivery")
+    form.setValue("delivery",user?.institute?.name ?? "")
+  }
+
   return (
     <Form {...form}>
       <form
@@ -172,7 +195,7 @@ const CreateAssignment = () => {
             name="instructions"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Instructions</FormLabel>
+                <FormLabel>Instructions (<span className="cursor-pointer hover:text-blue-600" onClick={handleSampleCopy}>Copy Sample</span>)</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Assignment 01" {...field} />
                 </FormControl>
@@ -203,6 +226,7 @@ const CreateAssignment = () => {
                     }}
                   />
                 </FormControl>
+                <FormDescription>Max file size allowed is 10MB</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -229,10 +253,10 @@ const CreateAssignment = () => {
             name="delivery"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Delivery Address</FormLabel>
+                <FormLabel>Delivery Address (<span className="cursor-pointer hover:text-blue-600" onClick={handleCopyInstitute}>Deliver to your institute</span>)</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="DSEU Okhla 2 Campus"
+                    placeholder="Address of Delivery....."
                     type="type"
                     {...field}
                   />

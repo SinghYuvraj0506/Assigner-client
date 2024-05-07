@@ -14,13 +14,11 @@ export const createAssigmentSchema = z.object({
     .array(
       z
         .instanceof(File)
+        .refine((file) => file?.size <= MAX_UPLOAD_SIZE, {message: "Each File size must be less than 1MB"})
         .refine(
-          (file) => file?.size <= MAX_UPLOAD_SIZE,
-          "File size must be less than 50MB"
-        )
-        .refine(
-          (file) => {console.log(file.type); return ACCEPTED_FILE_TYPES.includes(file.type)},
-          "File must be an Image/PDF"
+          (file) => {return ACCEPTED_FILE_TYPES.includes(file.type)},{
+            message:"File must be an Image/PDF"
+          }
         )
     )
     .min(1, "At least 1 file is required"),
