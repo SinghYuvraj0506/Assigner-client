@@ -22,6 +22,7 @@ export const apiSlice = createApi({
                 method:"GET",
                 credentials:"include"
             }),
+            providesTags:["auth"],
             async onQueryStarted(_,{queryFulfilled,dispatch}){
                 try {
                     const result = await queryFulfilled

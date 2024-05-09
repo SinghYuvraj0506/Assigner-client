@@ -5,6 +5,7 @@ import { EditProfileSchema } from "@/schemas/Profile";
 import { LoginUserSchema, SignupUserSchema } from "@/schemas/Auth";
 import { z } from "zod";
 import mixpanel from "mixpanel-browser";
+import { ApiResponseType } from "@/lib/constants";
 
 interface ValidateUser {
   token: string;
@@ -56,6 +57,7 @@ const authApi = apiSlice.injectEndpoints({
         body: data,
         credentials: "include",
       }),
+      invalidatesTags:["auth"],
       async onQueryStarted(_, { queryFulfilled }) {
         try {
           await queryFulfilled;
@@ -77,6 +79,7 @@ const authApi = apiSlice.injectEndpoints({
         },
         credentials: "include",
       }),
+      invalidatesTags:["auth"],
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
@@ -109,6 +112,7 @@ const authApi = apiSlice.injectEndpoints({
         },
         credentials: "include",
       }),
+      invalidatesTags:["auth"],
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
@@ -141,6 +145,7 @@ const authApi = apiSlice.injectEndpoints({
         },
         credentials: "include",
       }),
+      invalidatesTags:["auth"],
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
@@ -168,6 +173,7 @@ const authApi = apiSlice.injectEndpoints({
         method: "POST",
         credentials: "include",
       }),
+      invalidatesTags:["auth"],
       async onQueryStarted(_, { queryFulfilled, dispatch }) {
         try {
           await queryFulfilled;
